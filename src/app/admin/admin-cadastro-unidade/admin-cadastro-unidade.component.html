@@ -1,0 +1,83 @@
+<div class="content-wrapper">
+
+  <section class="content-header">
+    <h1>Cadastro de Unidades</h1>
+    <ol class="breadcrumb">
+      <li>
+        <a>
+          <i class="fa fa-dashboard"></i> Admin</a>
+        </li>
+        <li class="">Cadastro</li>
+        <li class="active">Unidades</li>
+      </ol>
+    </section>
+
+    <section class="content">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cadastro de Unidades</h3>
+            </div>
+            <div class="box-body">
+              <div class="modal-body" >
+                <form role="form" id="vueApp">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="nome_unidade">Nome da Unidade</label>
+                      <input type="text" class="form-control" id="nome_unidade" placeholder="Digite uma nome da unidade">
+                    </div>
+                    <div class="form-group">
+                        <label for="nome_unidade">Sigla</label>
+                        <input type="text" class="form-control" id="sigla" placeholder="Informe a sigla">
+                      </div>
+                      <div class="form-group">
+                          <label>SE</label>
+                          <select class="form-control">
+                            <option [value]="se.sigla"  *ngFor="let se of estados">{{se.sigla}}</option>
+                          </select>
+                        </div>
+                  </div>
+
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Lista de Unidades</h3>
+            </div>
+
+            <div class="box-body">
+              <table class="table table-hover">
+                <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>Sigla</th>
+                  <th>SE</th>
+                </tr>
+                <tr *ngFor="let unidade of unidades">
+                  <td>{{unidade.id}}</td>
+                  <td>{{ unidade.nome_unidade }}</td>
+                  <td>{{ unidade.sigla }}</td>
+                  <td>{{unidade.se}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </section>
+
+  </div>

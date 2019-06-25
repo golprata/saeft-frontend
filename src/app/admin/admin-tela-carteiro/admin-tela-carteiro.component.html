@@ -1,0 +1,71 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Módulo Carteiro
+      <small>Resultado Individual</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+      <li class="active">Carteiros</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs pull-right">
+        <li class="active"><a href="#revenue-chart" data-toggle="tab">Diário</a></li>
+        <li><a href="#sales-chart" data-toggle="tab">Acumulado</a></li>
+        <li class="pull-left header"><i class="fa fa-inbox"></i> Resultados</li>
+      </ul>
+      <div class="tab-content no-padding">
+        <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+      </div>
+    </div>
+
+
+    <div class="box box-warning">
+      <div class="box-header with-border">
+        <h3 class="box-title">Bar Chart</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body chart-responsive">
+        <div class="chart" id="bar-example" style="height: 300px;"></div>
+      </div>
+      <!-- /.box-body BAR CHART -->
+    </div>
+
+
+    <!-- Line chart -->
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Monthly Recap Report</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <p class="text-center">
+          <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+        </p>
+        <div class="chart">
+          <!-- Sales Chart Canvas -->
+          <canvas id="salesChart" style="height: 180px"></canvas>
+        </div>
+        <!-- /.chart-responsive -->
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

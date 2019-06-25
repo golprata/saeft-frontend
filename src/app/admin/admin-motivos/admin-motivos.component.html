@@ -1,0 +1,83 @@
+<div class="content-wrapper">
+
+  <section class="content-header">
+    <h1>Motivos de Não entrega</h1>
+    <ol class="breadcrumb">
+      <li>
+        <a >
+          <i class="fa fa-dashboard"></i> Admin</a>
+        </li>
+        <li class="active">Motivos</li>
+      </ol>
+    </section>
+
+    <section class="content">
+
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cadastro de Motivos</h3>
+            </div>
+            <div class="box-body">
+              <div class="modal-body" >
+                <form role="form" id="vueApp">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="nome">Descrição</label>
+                      <input type="text" class="form-control" id="descricao" placeholder="Digite uma descrição">
+                    </div>
+                  </div>
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Lista de Motivos</h3>
+            </div>
+
+            <div class="box-body">
+              <table class="table table-bordered">
+                <tr>
+                  <th style="width: 15px">#</th>
+                  <th>Descrição</th>
+                  <th style="width: 40px">Status</th>
+                </tr>
+                <tr *ngFor="let m of motivos">
+                  <td>{{m.id}}</td>
+                  <td>{{ m.descricao }}</td>
+                  <td>{{ m.status }}</td>
+                </tr>
+
+              </table>
+
+              <!-- *ngFor="let role of roles.roles" -->
+            </div>
+
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </section>
+
+  </div>

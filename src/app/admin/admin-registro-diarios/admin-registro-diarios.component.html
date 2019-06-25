@@ -1,0 +1,183 @@
+<div class="content-wrapper">
+
+    <section class="content-header">
+      <h1>Síntese dos resultados de Efetividade na entrega</h1>
+      <ol class="breadcrumb">
+        <li>
+          <a >
+            <i class="fa fa-dashboard"></i> Admin</a>
+          </li>
+          <li class="active">Efetividade</li>
+        </ol>
+      </section>
+
+      <section class="content">
+        <div class="box box-warning">
+          <div class="box-header with-border">
+            <h3 class="box-title">Lista de Registros </h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <!-- <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+            </div>
+          </div>
+          <div class="box-body">
+            <div>
+
+
+            </div>
+            <script>
+            //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })</script>
+            <table class="table table-hover">
+              <tr>
+                <th>Matrícula</th>
+                <th>Nome</th>
+                <th>Baixados</th>
+                <th>Efetivos</th>
+                <th>Ausentes</th>
+                <th>Cancelados</th>
+                <th>Irregular</th>
+                <th>Mal Endereçado</th>
+              </tr>
+              <tr *ngFor="let r of efetividades">
+                <td>{{r.matricula}}</td>
+                <td>{{ r.name }}</td>
+                <td>{{ r.baixados }}</td>
+                <td><span [ngClass]="mudaCor((r.efetivos/r.baixados)*100)">{{ r.efetivos  }}</span></td>
+                <td><span [ngClass]="mudaCor((r.efetivos/r.baixados)*100)">{{ r.ausentes }}%</span></td>
+                <td><span [ngClass]="mudaCor((r.efetivos/r.baixados)*100)">{{ r.cancelados }}%</span></td>
+                <td><span [ngClass]="mudaCor((r.efetivos/r.baixados)*100)">{{ r.log_irregular }}%</span></td>
+                <td><span [ngClass]="mudaCor((r.efetivos/r.baixados)*100)">{{ r.mal_enderecado }}%</span></td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <!-- Info Boxes Style 2 -->
+            <div class="info-box bg-aqua">
+              <span class="info-box-icon"><i class="fa fa-envelope"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Efetivos</span>
+                <span class="info-box-number">{{ acumulado.efetivos }}</span>
+                <div class="progress">
+                  <div class="progress-bar" [ngStyle]="{'width': acumulado.efetivos/acumulado.baixados | percent}"></div>
+                </div>
+                <span class="progress-description">
+                  {{acumulado.efetivos / acumulado.baixados | percent}} Acumulado do mês
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box bg-green">
+              <span class="info-box-icon"><i class="fa fa-map"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Ausente</span>
+                <span class="info-box-number">{{acumulado.ausentes}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" [ngStyle]="{'width': acumulado.ausentes/acumulado.baixados | percent}"></div>
+                </div>
+                <span class="progress-description">
+                  {{acumulado.ausentes/acumulado.baixados | percent}} Acumulado do mês
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box bg-yellow">
+              <span class="info-box-icon"><i class="fa fa-frown-o"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Entrega não efetuada</span>
+                <span class="info-box-number">{{acumulado.cancelados}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 1%"></div>
+                </div>
+                <span class="progress-description">
+                  {{acumulado.cancelados/acumulado.baixados | percent}} Acumulado do mês
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box bg-green">
+              <span class="info-box-icon"><i class="fa fa-exclamation-triangle"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Mal Endereçado</span>
+                <span class="info-box-number">{{acumulado.mal_enderecado}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 5%"></div>
+                </div>
+                <span class="progress-description">
+                  {{acumulado.mal_enderecado/acumulado.baixados|percent}} Acumulado do mês
+                </span>
+              </div>
+            </div>
+            <div class="info-box bg-red">
+              <span class="info-box-icon"><i class="fa fa-map"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Numeração irregular</span>
+                <span class="info-box-number">{{acumulado.log_irregular}}</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 5%"></div>
+                </div>
+                <span class="progress-description">
+                  {{acumulado.log_irregular/acumulado.baixados|percent}} Acumulado do mês
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="box box-warning">
+              <div class="box-header with-border">
+                <h3 class="box-title">Índice de efetividade</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <!-- <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+                </div>
+              </div>
+              <div class="box-body">
+                <div class="chart-responsive">
+                  <canvas id="doughnutChart" height="150"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
